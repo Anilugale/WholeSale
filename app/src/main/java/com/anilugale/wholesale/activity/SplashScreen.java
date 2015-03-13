@@ -1,8 +1,10 @@
-package com.anilugale.wholesale;
+package com.anilugale.wholesale.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+
+import com.anilugale.wholesale.R;
 
 import java.util.Timer;
 import java.util.TimerTask;

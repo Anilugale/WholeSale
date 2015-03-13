@@ -1,4 +1,4 @@
-package com.anilugale.wholesale;
+package com.anilugale.wholesale.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import com.anilugale.wholesale.R;
 import com.anilugale.wholesale.adapter.CategoryAdapter;
 
 import java.util.ArrayList;
