@@ -1,41 +1,33 @@
 package com.anilugale.wholesale.activity;
 
-import android.support.v7.app.ActionBarActivity;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.support.v7.app.ActionBarActivity;
+import android.view.View;
 
 import com.anilugale.wholesale.R;
 
 
 public class Vendor extends ActionBarActivity {
 
+    SharedPreferences sp;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vendor);
+        sp=getSharedPreferences(getString(R.string.app_name),MODE_PRIVATE);
+/*
+        if(!sp.getBoolean(Utility.Vendor,false))
+        {
+             startActivity(new Intent(this,VendorLogin.class));
+        }*/
     }
 
+    public void shop(View view) {
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_vendor, menu);
-        return true;
-    }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
 
-        return super.onOptionsItemSelected(item);
+
     }
 }

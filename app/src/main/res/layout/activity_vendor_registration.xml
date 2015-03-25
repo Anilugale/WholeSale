@@ -1,0 +1,57 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.anilugale.wholesale.activity.VendorRegistration">
+
+    <LinearLayout
+
+        android:layout_marginTop="100dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <EditText
+            android:singleLine="true"
+            android:hint="Name"
+            android:id="@+id/name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <EditText
+            android:singleLine="true"
+            android:hint="Username"
+            android:id="@+id/username"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <EditText
+
+            android:singleLine="true"
+            android:inputType="textPassword"
+            android:hint="Password"
+            android:id="@+id/password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <EditText
+            android:inputType="number"
+            android:singleLine="true"
+            android:maxLength="10"
+            android:hint="Contact"
+            android:id="@+id/contact"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:textColor="#fff"
+            android:background="@drawable/btn"
+            android:onClick="registration"
+            android:text="Registration"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+</RelativeLayout>

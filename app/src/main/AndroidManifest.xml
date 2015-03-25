@@ -47,6 +47,18 @@
             android:name=".activity.SearchActivity"
             android:label="@string/title_activity_search" >
         </activity>
+        <activity
+            android:name=".activity.VendorLogin"
+            android:label="@string/title_activity_vendor_login" >
+        </activity>
+        <activity
+            android:name=".activity.VendorRegistration"
+            android:label="@string/title_activity_vendor_registration" >
+        </activity>
+        <activity
+            android:name=".activity.DashBoard"
+            android:label="@string/title_activity_dash_board" >
+        </activity>
     </application>
 
 </manifest>
