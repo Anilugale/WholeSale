@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.view.View;
+import android.widget.Toast;
 
 import com.anilugale.wholesale.R;
 import com.anilugale.wholesale.util.Utility;
@@ -23,6 +25,14 @@ public class DashBoard extends ActionBarActivity {
             finish();
         }
 
+    }
+
+    public void shop(View view) {
+         startActivity(new Intent(this,Shop.class));
+    }
+
+    public void advertisement(View view) {
+        Toast.makeText(this,"working in progress",Toast.LENGTH_SHORT).show();
     }
 
 

@@ -46,9 +46,9 @@ public class VendorRegistration extends ActionBarActivity {
           JSONObject request=new JSONObject();
             try {
                 request.put("contact",contact.getText().toString().trim());
-                request.put("name",contact.getText().toString().trim());
-                request.put("username",contact.getText().toString().trim());
-                request.put("password",contact.getText().toString().trim());
+                request.put("name",name.getText().toString().trim());
+                request.put("username",username.getText().toString().trim());
+                request.put("password",pass.getText().toString().trim());
                 Toast.makeText(this,request.toString(),Toast.LENGTH_SHORT).show();
 
               final  ProgressDialog pd=ProgressDialog.show(this," ","Loading...",true,false);
@@ -68,6 +68,7 @@ public class VendorRegistration extends ActionBarActivity {
                             edit.apply();
                             startActivity(new Intent(VendorRegistration.this,DashBoard.class));
 
+                            finish();
                         }
                         else
                         {

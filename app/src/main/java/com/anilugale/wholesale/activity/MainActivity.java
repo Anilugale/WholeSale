@@ -1,6 +1,8 @@
 package com.anilugale.wholesale.activity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
@@ -11,8 +13,16 @@ import android.widget.ListView;
 
 import com.anilugale.wholesale.R;
 import com.anilugale.wholesale.adapter.CategoryAdapter;
+import com.anilugale.wholesale.pojo.Category;
+import com.anilugale.wholesale.util.Utility;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
 
-import java.util.ArrayList;
+import org.apache.http.Header;
+
+import java.lang.reflect.Type;
 import java.util.List;
 
 
@@ -20,6 +30,8 @@ public class MainActivity extends ActionBarActivity {
 
     ListView listView;
     CategoryAdapter adapter;
+    SharedPreferences sp;
+    Gson gson=new Gson();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,14 +40,40 @@ public class MainActivity extends ActionBarActivity {
     }
 
     private void init() {
+        sp=getSharedPreferences(getString(R.string.app_name),MODE_PRIVATE);
         listView=(ListView) findViewById(R.id.main_list);
-        List<String> listData=new ArrayList<>();
-        for(int i=0;i<10;i++)
+        if(sp.getString(Utility.Category,"").equals(""))
         {
-            listData.add("Category :"+i);
+
+           final ProgressDialog pd=ProgressDialog.show(this,"sale","Loading...",true,false);
+            Utility.client.get(Utility.CategoryUrl,new RequestParams(),new AsyncHttpResponseHandler() {
+                @Override
+                public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+
+                    SharedPreferences.Editor edit=sp.edit();
+                    System.out.println(new String(responseBody));
+                    edit.putString(Utility.Category, new String(responseBody));
+                    Type type=new TypeToken<List<Category>>(){}.getType();
+                    List<Category> listData =gson.fromJson(new String(responseBody),type);
+                    adapter = new CategoryAdapter(MainActivity.this, listData);
+                    listView.setAdapter(adapter);
+                    edit.apply();
+                    pd.dismiss();
+                }
+
+                @Override
+                public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+                    pd.dismiss();
+                }
+            });
+
         }
-        adapter=new CategoryAdapter(this,listData);
-        listView.setAdapter(adapter);
+        else {
+            Type type=new TypeToken<List<Category>>(){}.getType();
+            List<Category> listData =gson.fromJson(sp.getString(Utility.Category,""),type);
+            adapter = new CategoryAdapter(this, listData);
+            listView.setAdapter(adapter);
+        }
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -58,7 +96,7 @@ public class MainActivity extends ActionBarActivity {
 
         if (id == R.id.vendor) {
 
-            startActivity(new Intent(this,VendorLogin.class));
+            startActivity(new Intent(this,DashBoard.class));
             return true;
         }
 

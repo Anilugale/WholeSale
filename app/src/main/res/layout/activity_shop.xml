@@ -1,0 +1,72 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.anilugale.wholesale.activity.Shop">
+    <LinearLayout
+        android:visibility="gone"
+        android:id="@+id/form"
+        android:orientation="vertical"
+        android:layout_margin="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <EditText
+            android:id="@+id/name"
+            android:hint="Shop-Name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <EditText
+            android:gravity="top"
+            android:id="@+id/address"
+            android:hint="Address"
+            android:layout_width="match_parent"
+            android:layout_height="100dp" />
+
+        <EditText
+            android:id="@+id/lat"
+            android:hint="latitude"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <EditText
+            android:id="@+id/long1"
+            android:hint="Longitude"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <Button
+            android:onClick="checkLatLong"
+            android:textColor="#fff"
+            android:background="@drawable/btn"
+            android:text="Check"
+            android:layout_gravity="end"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:layout_gravity="bottom"
+            android:id="@+id/save_shop"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="10dp"
+            android:textColor="#fff"
+            android:textStyle="bold"
+            android:text="Save"
+            android:background="@drawable/btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <Button
+        android:onClick="add"
+        android:visibility="gone"
+        android:id="@+id/add_shop"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="10dp"
+        android:textColor="#fff"
+        android:textStyle="bold"
+        android:text="Add"
+        android:background="@drawable/btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+
+</RelativeLayout>
+

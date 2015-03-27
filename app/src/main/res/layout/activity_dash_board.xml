@@ -1,12 +1,39 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="com.anilugale.wholesale.activity.DashBoard">
+    android:layout_height="match_parent"
+    android:background="#ffcacaca"
+    tools:context="com.anilugale.wholesale.activity.Vendor">
 
-    <TextView android:text="@string/hello_world" android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_centerInParent="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <Button
+            android:textStyle="bold"
+            android:id="@+id/shop_info"
+            android:text="Shop Information"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:textColor="#fff"
+            android:background="@drawable/btn"
+            android:layout_width="300dp"
+            android:onClick="shop"
+            android:layout_height="100dp"/>
+
+        <Button
+            android:onClick="advertisement"
+            android:layout_marginTop="10dp"
+            android:textStyle="bold"
+            android:id="@+id/ad_info"
+            android:layout_below="@+id/shop_info"
+            android:text="Advertisement"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:textColor="#fff"
+            android:background="@drawable/btn"
+            android:layout_width="300dp"
+            android:layout_height="100dp" />
+    </LinearLayout>
 
 </RelativeLayout>

@@ -16,13 +16,17 @@ import java.util.List;
 /**
   Created by AnilU on 09-03-2015.
  */
-public class CategoryAdapter extends BaseAdapter {
+public class SpinnerAdapter extends BaseAdapter {
     Activity activity;
     List<Category> data;
     LayoutInflater inflater;
-    public CategoryAdapter(Activity activity, List<Category> data) {
+    public SpinnerAdapter(Activity activity, List<Category> data) {
         this.activity = activity;
         this.data = data;
+        Category category=new Category();
+        category.setId(-1);
+        category.setName("None");
+        data.add(category);
         inflater= (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
@@ -47,7 +51,7 @@ public class CategoryAdapter extends BaseAdapter {
         ViewHolder holder;
         if(view==null)
         {
-            view =inflater.inflate(R.layout.main_list_item,viewGroup,false);
+            view =inflater.inflate(R.layout.spinner_list_item,viewGroup,false);
             holder=new ViewHolder();
             holder.name=(TextView)view.findViewById(R.id.name);
             view.setTag(holder);
