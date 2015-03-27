@@ -14,6 +14,7 @@ public class Utility {
     public static final String BasicUrl = "http://192.168.42.40:8080/Wholesaleweb/api/";
     public static final String VendorRegister = BasicUrl+"vendor";
     public static final String  CategoryUrl = BasicUrl+"category";
+    public static final String ShopURL=BasicUrl+"shop";
 }
 
 

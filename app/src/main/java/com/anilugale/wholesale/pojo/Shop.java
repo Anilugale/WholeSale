@@ -5,11 +5,28 @@ package com.anilugale.wholesale.pojo;
  */
 public class Shop {
 
-    int id;
+    private transient   int id;
     String name;
-    String offer;
-    double lat;
-    double lag;
+    String lat;
+    String lag;
+    int v_id;
+    int c_id;
+
+    public int getV_id() {
+        return v_id;
+    }
+
+    public int getC_id() {
+        return c_id;
+    }
+
+    public void setC_id(int c_id) {
+        this.c_id = c_id;
+    }
+
+    public void setV_id(int v_id) {
+        this.v_id = v_id;
+    }
 
     public void setAddress(String address) {
         this.address = address;
@@ -39,30 +56,20 @@ public class Shop {
         this.name = name;
     }
 
-    public String getOffer() {
-        return offer;
-    }
 
-    public void setOffer(String offer) {
-        this.offer = offer;
-    }
-
-    public double getLat() {
+    public String getLat() {
         return lat;
     }
 
-    public void setLat(double lat) {
+    public void setLat(String lat) {
         this.lat = lat;
     }
 
-    public double getLag() {
+    public String getLag() {
         return lag;
     }
 
-    public void setLag(double lag) {
+    public void setLag(String lag) {
         this.lag = lag;
     }
-
-
-
 }

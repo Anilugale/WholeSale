@@ -26,7 +26,7 @@ public class SpinnerAdapter extends BaseAdapter {
         Category category=new Category();
         category.setId(-1);
         category.setName("None");
-        data.add(category);
+        data.add(0,category);
         inflater= (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 

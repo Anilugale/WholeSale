@@ -10,16 +10,12 @@ import android.support.v4.app.FragmentActivity;
 import android.widget.Toast;
 
 import com.anilugale.wholesale.R;
-import com.anilugale.wholesale.pojo.Shop;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class SearchActivity extends FragmentActivity implements LocationListener {
 
@@ -78,7 +74,7 @@ public class SearchActivity extends FragmentActivity implements LocationListener
             mMap.addMarker(new MarkerOptions().position(latLng1).title("You are here!").snippet("Consider yourself located").icon(BitmapDescriptorFactory.fromResource(R.drawable.user_marker)));
 
 
-            {
+           /* {
                 List<Shop> shopeList=new ArrayList<>();
 
 
@@ -136,7 +132,7 @@ public class SearchActivity extends FragmentActivity implements LocationListener
                 marker2.position(new LatLng(shop.getLat(),shop.getLag()));
                 mMap.addMarker(marker2);
             }
-
+*/
 
 
         }

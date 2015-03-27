@@ -51,7 +51,6 @@ public class MainActivity extends ActionBarActivity {
                 public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
 
                     SharedPreferences.Editor edit=sp.edit();
-                    System.out.println(new String(responseBody));
                     edit.putString(Utility.Category, new String(responseBody));
                     Type type=new TypeToken<List<Category>>(){}.getType();
                     List<Category> listData =gson.fromJson(new String(responseBody),type);
