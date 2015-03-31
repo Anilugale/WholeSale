@@ -42,7 +42,7 @@ public class SpinnerAdapter extends BaseAdapter {
 
     @Override
     public long getItemId(int i) {
-        return i;
+        return data.get(i).getId();
     }
 
     @Override

@@ -32,6 +32,7 @@ public class MainActivity extends ActionBarActivity {
     CategoryAdapter adapter;
     SharedPreferences sp;
     Gson gson=new Gson();
+    List<Category> listData;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,7 +46,7 @@ public class MainActivity extends ActionBarActivity {
         if(sp.getString(Utility.Category,"").equals(""))
         {
 
-           final ProgressDialog pd=ProgressDialog.show(this,"sale","Loading...",true,false);
+           final ProgressDialog pd=ProgressDialog.show(this,"","Loading...",true,false);
             Utility.client.get(Utility.CategoryUrl,new RequestParams(),new AsyncHttpResponseHandler() {
                 @Override
                 public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
@@ -69,13 +70,14 @@ public class MainActivity extends ActionBarActivity {
         }
         else {
             Type type=new TypeToken<List<Category>>(){}.getType();
-            List<Category> listData =gson.fromJson(sp.getString(Utility.Category,""),type);
+           listData =gson.fromJson(sp.getString(Utility.Category,""),type);
             adapter = new CategoryAdapter(this, listData);
             listView.setAdapter(adapter);
         }
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                sp.edit().putInt(Utility.Cat_id,listData.get(i).getId()).apply();
                 startActivity(new Intent(MainActivity.this,SearchActivity.class));
             }
         });

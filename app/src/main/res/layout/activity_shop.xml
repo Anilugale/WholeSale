@@ -45,6 +45,14 @@
             android:layout_gravity="end"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
+        <EditText
+            android:maxLength="360"
+            android:id="@+id/offer"
+            android:gravity="top"
+            android:hint="Offer"
+            android:layout_width="match_parent"
+            android:layout_height="100dp" />
+
         <Spinner
             android:spinnerMode="dialog"
             android:id="@+id/category_spinner"
@@ -80,6 +88,19 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
+
+    <Button
+        android:onClick="update"
+        android:visibility="gone"
+        android:id="@+id/update_shop"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="10dp"
+        android:textColor="#fff"
+        android:textStyle="bold"
+        android:text="Update"
+        android:background="@drawable/btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
 </RelativeLayout>
 

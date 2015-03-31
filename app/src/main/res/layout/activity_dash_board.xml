@@ -14,6 +14,7 @@
             android:id="@+id/shop_info"
             android:text="Shop Information"
             android:paddingLeft="20dp"
+            android:textSize="20sp"
             android:paddingRight="20dp"
             android:textColor="#fff"
             android:background="@drawable/btn"
@@ -22,6 +23,7 @@
             android:layout_height="100dp"/>
 
         <Button
+            android:visibility="gone"
             android:onClick="advertisement"
             android:layout_marginTop="10dp"
             android:textStyle="bold"

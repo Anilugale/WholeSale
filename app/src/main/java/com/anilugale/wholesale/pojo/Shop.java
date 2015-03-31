@@ -1,16 +1,38 @@
 package com.anilugale.wholesale.pojo;
 
+import java.io.Serializable;
+
 /**
  Created by Anil U on 13-03-2015.
  */
-public class Shop {
-
-    private transient   int id;
+public class Shop implements Serializable {
+      int id;
     String name;
     String lat;
-    String lag;
+    String log;
     int v_id;
     int c_id;
+    float distance;
+
+    public int getA_id() {
+        return a_id;
+    }
+
+    public void setA_id(int a_id) {
+        this.a_id = a_id;
+    }
+
+    int a_id;
+
+    public String getOffer() {
+        return offer;
+    }
+
+    public void setOffer(String offer) {
+        this.offer = offer;
+    }
+
+    String offer;
 
     public int getV_id() {
         return v_id;
@@ -65,11 +87,11 @@ public class Shop {
         this.lat = lat;
     }
 
-    public String getLag() {
-        return lag;
+    public String getLog() {
+        return log;
     }
 
-    public void setLag(String lag) {
-        this.lag = lag;
+    public void setLog(String log) {
+        this.log = log;
     }
 }

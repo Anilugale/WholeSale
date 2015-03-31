@@ -1,6 +1,8 @@
 package com.anilugale.wholesale.activity;
 
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
@@ -10,25 +12,35 @@ import android.support.v4.app.FragmentActivity;
 import android.widget.Toast;
 
 import com.anilugale.wholesale.R;
+import com.anilugale.wholesale.util.Utility;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
+
+import org.apache.http.Header;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.List;
 
 public class SearchActivity extends FragmentActivity implements LocationListener {
-
-    private GoogleMap mMap; // Might be null if Google Play services APK is not available.
+    List<com.anilugale.wholesale.pojo.Shop> listLocation;
+    private GoogleMap mMap;
+    SharedPreferences sp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
-
+        sp=getSharedPreferences(getString(R.string.app_name),MODE_PRIVATE);
         LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         lm.requestLocationUpdates(LocationManager.GPS_PROVIDER, 35000, 10, this);
-
         setUpMapIfNeeded();
     }
 
@@ -66,12 +78,23 @@ public class SearchActivity extends FragmentActivity implements LocationListener
 
             double latitude = myLocation.getLatitude();
             double longitude = myLocation.getLongitude();
+
+
+
+            int cat_id= sp.getInt(Utility.Cat_id,0);
             LatLng latLng = new LatLng(latitude, longitude);
             mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
             mMap.animateCamera(CameraUpdateFactory.zoomTo(14));
             LatLng latLng1 = new LatLng(latitude, longitude);
             mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng1, 16.0f));
             mMap.addMarker(new MarkerOptions().position(latLng1).title("You are here!").snippet("Consider yourself located").icon(BitmapDescriptorFactory.fromResource(R.drawable.user_marker)));
+
+            RequestParams para=new RequestParams();
+            para.put("catID",cat_id);
+            para.put("lat",latLng.latitude);
+            para.put("long",latLng.longitude);
+
+            getData(para);
 
 
            /* {
@@ -138,6 +161,14 @@ public class SearchActivity extends FragmentActivity implements LocationListener
         }
         else
         {
+            RequestParams para=new RequestParams();
+            para.put("catID",3);
+            para.put("lat",15.2993265);
+            para.put("log",74.12399600000003);
+
+            getData(para);
+
+
 
             LatLng latLng = new LatLng(21.1289956,82.7792201);
             mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
@@ -168,6 +199,58 @@ public class SearchActivity extends FragmentActivity implements LocationListener
     @Override
     public void onProviderDisabled(String s) {
         Toast.makeText(this,"Location provider off.",Toast.LENGTH_SHORT).show();
+    }
+
+
+    void getData(RequestParams para)
+    {
+        final ProgressDialog pd=ProgressDialog.show(this,"","Getting nearest shop....",true,false);
+        Utility.client.get(this,Utility.ShopSearchURL,para,new AsyncHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+
+                Toast.makeText(SearchActivity.this,new String(responseBody),Toast.LENGTH_SHORT).show();
+                String data=new String(responseBody);
+                updateLocation(data);
+                System.out.println(new String(responseBody));
+                pd.dismiss();
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+
+                Toast.makeText(SearchActivity.this,"Error is connection or location",Toast.LENGTH_SHORT).show();
+                pd.dismiss();
+            }
+        });
+    }
+
+    void updateLocation(String data)
+    {
+
+        try {
+            JSONArray jsonArray=new JSONArray(data);
+            for(int i=0;i<jsonArray.length();i++)
+            {
+                JSONObject shop=jsonArray.getJSONObject(i);
+                MarkerOptions marker2 =new MarkerOptions();
+                marker2.title(shop.getString("name"));
+                marker2.snippet(shop.getString("offer") + shop.getString("address"));
+                marker2.position(new LatLng(Double.valueOf(shop.getString("lat")),Double.valueOf(shop.getString("log"))));
+                mMap.addMarker(marker2);
+            }
+
+
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+
+        System.out.println(data);
+
+
+
     }
 
 

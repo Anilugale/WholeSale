@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -48,7 +49,7 @@ public class VendorRegistration extends ActionBarActivity {
                 request.put("contact",contact.getText().toString().trim());
                 request.put("name",name.getText().toString().trim());
                 request.put("username",username.getText().toString().trim());
-                request.put("password",pass.getText().toString().trim());
+                request.put("password", Base64.encodeToString(pass.getText().toString().trim().getBytes(),0));
                 Toast.makeText(this,request.toString(),Toast.LENGTH_SHORT).show();
 
               final  ProgressDialog pd=ProgressDialog.show(this," ","Loading...",true,false);
